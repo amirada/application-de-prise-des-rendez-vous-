@@ -1,0 +1,77 @@
+<div class="page login-page">
+    <div class="container d-flex align-items-center">
+      <div class="form-holder has-shadow">
+        <div class="row">
+          <!-- Logo & Information Panel-->
+          <div class="col-lg-6">
+            <div class="info d-flex align-items-center">
+              <div class="content">
+                <div class="row">
+                <div class="logo tite">
+                  <h1>GOOD HEALTH FOR ALL</h1>
+                </div>
+                <p>We are never so close to illness as to health.</p>
+              </div>
+            </div>
+              <div class="row">
+                  <img src="../../assets/img/imageonline-co-whitebackgroundremoved (1).png">
+                </div>
+            </div>
+          </div>
+          <!-- Form Panel    -->
+          <div class="col-lg-6 bg-white">
+            <div class="form d-flex align-items-center">
+              <div class="content">
+                <form [formGroup]="userForm" class="form-validate">
+                  <div class="form-group">
+                    <input id="firstname" type="text" name="firstname" required data-msg="Please enter your username" class="input-material" formControlName="nom" [ngClass]="{ 'is-invalid': submitted && f.nom.errors }">
+                    <label for="firstname" class="label-material">First Name</label>
+                    <div *ngIf="submitted && f.nom.errors" class="invalid-feedback">
+                        <div *ngIf="f.nom.errors.required">First Name is required</div>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                    <input id="lastname" type="text" name="lastname" required data-msg="Please enter your lastname" class="input-material" formControlName="prenom" [ngClass]="{ 'is-invalid': submitted && f.nom.errors }"> 
+                    <label for="lastname" class="label-material">Last name      </label>
+                    <div *ngIf="submitted && f.nom.errors" class="invalid-feedback">
+                        <div *ngIf="f.nom.errors.required">Last Name is required</div>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <input id="email" type="email" name="email" required data-msg="Please enter your Email" class="input-material" formControlName="email" [ngClass]="{ 'is-invalid': submitted && f.email.errors }"> 
+                      <label for="email" class="label-material">Email </label>
+                      <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                          <div *ngIf="f.email.errors.required">Email is required</div>
+                          <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                                        
+                      <select  style="display: block !important" formControlName="typeaccee" class="form-control mb-3">
+                       <option [value]="acc" *ngFor="let acc of typeDaccee1" >{{acc}}</option>
+                        
+                      </select>
+                    
+                  </div>  
+                  <div class="form-group">
+                    <input id="register-password" type="password" name="registerPassword" required data-msg="Please enter your password" class="input-material" formControlName="password"  [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+                    <label for="register-password" class="label-material">Password </label>
+                    <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                        <div *ngIf="f.password.errors.required">Password is required</div>
+                      </div>
+                  </div>
+                  
+                  <div class="form-group">
+                    <button id="regidter"  type="submit" name="registerSubmit" (click)="ajouter()"  class="btn btn-primary">Register</button>
+                  </div>
+                </form><small>Already have an account? </small><a routerLink='/login' class="signup">Login</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="copyrights text-center">
+      
+    </div>
+  </div>

@@ -1,0 +1,33 @@
+.btsup
+{
+    
+background-image: url(../../../assets/img/supprimer.png);
+width:20px;
+ height:20px;
+}
+.c-white
+{
+    background-color: white;
+}
+.imglog{
+    width: 100px;
+    height: 80px;
+    margin-top: 0px;
+    margin-top: -54px;
+    }
+.plus
+{
+    background-image: url(../../../assets/img/ajouter.png);
+    width:15px;
+ height:15px;
+}
+.did
+{
+    box-sizing: border-box;
+    border-top-color: #F5F5F5;
+    border-top-width: 1px;
+}
+.center-div
+{    text-align: center;
+    padding: 30px;
+}

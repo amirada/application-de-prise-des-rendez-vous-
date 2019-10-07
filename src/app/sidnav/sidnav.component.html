@@ -1,0 +1,98 @@
+
+  <div class="page">
+    <!-- Main Navbar-->
+    <header class="header">
+      <nav class="navbar">
+        <!-- Search Box-->
+        <div class="search-box">
+          <button class="dismiss"><i class="icon-close"></i></button>
+          <form id="searchForm" action="#" role="search">
+            <input type="search" placeholder=" Que cherchez-vous..." class="form-control">
+          </form>
+        </div>
+        <div class="container-fluid">
+          <div class="navbar-holder d-flex align-items-center justify-content-between">
+            <!-- Navbar Header-->
+            <div class="navbar-header">
+              
+                <div class="brand-text d-none d-lg-inline-block"><span>Bien Venue au Application de prise des rendez-vous &nbsp;&nbsp;&nbsp;</span></div>
+               
+                <!-- Toggle Button--><a id="toggle-btn" href="javascript:void(0)" onclick="openNav()" class="menu-btn active"><span></span><span></span><span></span></a>
+            </div>
+            <!-- Navbar Menu -->
+            <ul class="nav-menu list-unstyled d-flex flex-md-row align-items-md-center">
+              <!-- Search-->
+              <!-- <li class="nav-item d-flex align-items-center"><a id="search" href="#"><i class="icon-search"></i></a></li> -->
+              <!-- Notifications-->
+              <!-- <li ng-if="isValid"  class="nav-item dropdown"> <a  class="nav-link"><img src="../../assets/img/notif.jpg"></a>
+                <ul  class="dropdown-menu">
+                 
+                 
+                  <li><a rel="nofollow" href="#" class="dropdown-item"> 
+                      <div class="notification">
+                        <div class="notification-content"><i class="fa fa-twitter bg-blue"></i>You have New message</div>
+                        <div class="notification-time"><small>10 minutes ago</small></div>
+                      </div></a></li>
+                  
+                </ul>
+              </li> -->
+              
+              <!-- Logout    -->
+              <li class="nav-item"><a class="nav-link logout" routerLink='/login' > <span class="d-none d-sm-inline" (click)="logout()">Logout</span><i class="fa fa-sign-out"></i></a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+    <div class="page-content d-flex align-items-stretch"> 
+      <!-- Side Navbar -->
+      <nav class="side-navbar">
+        <!-- Sidebar Header-->
+        <div class="sidebar-header d-flex align-items-center">
+          <div class="avatar"><img  [src]="imageUrl"  alt="..." class="img-fluid rounded-circle"></div>
+          <br>
+          <div  class="title"><br>
+            <h1 class="h4">Bonjour</h1>
+            
+            <p>{{user1?.nom}} {{user1?.prenom}}</p>
+          </div>
+        </div>
+        <!-- Sidebar Navidation Menus-->
+        <ul class="list-unstyled">
+          
+          <li *ngIf= "user1.typeaccee === 'Medecin'"><a routerLink='/home/gestionpatients'> <li class="icon-padnote"></li>Gestion Patients </a></li>
+          <li *ngIf = "user1.typeaccee === 'Patients'"><a routerLink='/home/gestion-rdv'> <li class="icon-grid"></li>Prise rendez-vous </a></li>
+          <li *ngIf= "user1.typeaccee === 'Medecin'"><a routerLink='/home/gestionmedecins'> <li class="icon-padnote"></li>Gestion Medecins </a></li>
+          <li *ngIf = "user1.typeaccee === 'Patients'"><a routerLink='/home/gestionmedical'> <li class="icon-grid"></li>Dossier Medicale </a></li>
+          
+        <li><a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>Ma boite d'email </a>
+          <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
+            <li><a routerLink='/home/email'> Ecrire un email</a></li>
+          
+            
+          </ul>
+        </li>
+          
+          <li><a routerLink='/login'> <li class="icon-interface-windows"></li>Login page </a></li>
+        </ul>
+        
+      </nav>
+      <div class="content-inner">
+        <!-- Page Header-->
+        
+       <router-outlet></router-outlet>
+        <!-- Page Footer-->
+        
+      </div>
+    </div>
+  </div>
+  
+   <script>
+    function openNav() {
+        document.getElementById("toggle-btn").style.minWidth=90;
+        document.getElementById("toggle-btn").style.maxwidth=90;
+        //document.getElementById("side1").style.textAligncenter;
+           }
+         
+    </script>
+

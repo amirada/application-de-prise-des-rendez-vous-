@@ -1,0 +1,371 @@
+<!-- Page Header-->
+<header class="page-header">
+  <div class="container-fluid">
+    <h2 class="no-margin-bottom">Good health and a healthy mind are better in this world than all goods.</h2>
+    <img  class="imglog" src="../../../assets/img/imageonline-co-whitebackgroundremoved (1).png" style="float: right">
+  
+  </div>
+
+</header>
+
+<!-- table de donnes-->
+
+<section class="tables">
+
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="panel panel-default">
+            <div class="panel-heading ui-draggable-handle">
+              <h3 class="panel-title">Liste des patients</h3>
+              <ul class="panel-controls">
+                <li>
+                  <!-- Button trigger modal -->
+                  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                    Nouveau Patient
+                  </button></li>
+
+              </ul>
+            </div>
+            <div class="panel-body">
+              <!-- <div class="dataTables_length" id="example_length"><label>Show <select name="example_length"  style="display: block !important" aria-controls="example" class="form-control"><option value="10">10</option><option value="25">25</option><option value="50">50</option><option value="100">100</option></select> entries</label></div> -->
+              <table id="mydatatable" class="table table-striped table-bordered mydatatable" style="width:100%">
+                <thead>
+                  <tr>
+                    <th>Nom</th>
+                    <th>Penom</th>
+                    <th>Groupe sanguine</th>
+                    <th>Email</th>
+                    <th>Delete</th>
+                    <th>Details</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let reslt of resultat; let i=index">
+
+                    <td>{{reslt.nom}}</td>
+                    <td>{{reslt.prenom}}</td>
+                    <td>{{reslt.groupesanguine}}</td>
+                    <td>{{reslt.email}}</td>
+                    <th> <button type="button" class="btn btn-secondary"
+                        (click)="resultatoelete(reslt.matriculePatient)" data-toggle="modal"
+                        data-target="#exampleModal1"> Delete </button></th>
+
+                    <th> <button type="button" class="btn btn-info" data-toggle="modal" data-target="#exampleModalmodif"
+                        (click)="getpatient(reslt,index)"> Details </button></th>
+                  </tr>
+
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <th>Nom</th>
+                    <th>Penom</th>
+                    <th>Groupe sanguine</th>
+                    <th>Email</th>
+                    <th>Delete</th>
+                    <th>Details</th>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Modal -->
+  <!-- Button trigger modal -->
+  <div class="modal fade" id="exampleModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel1">Comfirmation de la suppression</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          êtes-vous sûr de vouloir supprimer ce patient?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" (click)="delete()" class="btn btn-primary">Oui</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="exampleModalmodif" tabindex="-1" role="dialog" aria-labelledby="exampleModalmodif"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+
+          <h3 class="h4">Formulaire de Modification: </h3>
+
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="modifpatientForm" class="form-horizontal">
+
+
+            <div class="center-div">
+
+              <img [src]="imageUrl" style="width: 274px; height: 182px">
+            </div>
+
+            <div class="line"></div>
+            <div class="form-group row">
+              <label class="col-sm-3 form-control-label">Nom:</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" formControlName="nom">
+              </div>
+            </div>
+            <div class="line"></div>
+            <div class="form-group row">
+              <label class="col-sm-3 form-control-label">Prenom:</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" formControlName="prenom">
+              </div>
+            </div>
+
+            <div class="line"></div>
+            <div class="form-group row">
+              <label class="col-sm-3 form-control-label">Password:</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" formControlName="password">
+              </div>
+            </div>
+            <div class="line"></div>
+            <div class="form-group row">
+              <label class="col-sm-3 form-control-label">Email:</label>
+              <div class="col-sm-9">
+                <input type="email" class="form-control" formControlName="email">
+              </div>
+            </div>
+            <div class="line"></div>
+            <div class="form-group row">
+              <label class="col-sm-3 form-control-label">Adressee:</label>
+              <div class="col-sm-9">
+                <textarea class="form-control" rows="5" id="comment" formControlName="adresse"></textarea>
+              </div>
+            </div>
+
+            <div class="form-group row">
+              <label class="col-sm-3 form-control-label">Groupe sanguine:</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" formControlName="groupesanguine">
+              </div>
+            </div>
+            <div class="line"></div>
+
+
+            <div class="form-group row">
+              <label class="col-sm-3 form-control-label">Email:</label>
+              <div class="col-sm-9">
+                <input type="email" class="form-control" formControlName="email">
+              </div>
+            </div>
+            <div class="line"></div>
+            <div class="form-group row">
+              <label class="col-sm-3 form-control-label">Antecedents: </label>
+              <div class="col-sm-9">
+                <input type="text" placeholder="Antecedents" class="form-control" formControlName="antecedents">
+              </div>
+            </div>
+            <div class="line"></div>
+            <div class="form-group row">
+              <label class="col-sm-3 form-control-label">Date de naissance:</label>
+              <div class="col-sm-9">
+                <input type="date" placeholder="Datedenaissance" class="form-control" formControlName="datenaissance">
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" (click)="modifier()">Update</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <div class="alert alert-primary pt-3" role="alert" *ngIf="msg">
+            le patient est modifié avec succès.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+
+          <h3 class="h4">Formulaire d'ajouter un nouveau Patient: </h3>
+
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="ajoutpatientForm" class="form-horizontal">
+            
+            <div class="form-group row">
+              <label class="col-sm-3 form-control-label">Photo:</label>
+              <div class="btn btn-default btn-file">
+                <i class="fa fa-paperclip"> </i> Selectionner une photo
+                <input type="file" name="attachment" (change)="onFielSelected($event)" name="image"
+                formControlName="uploadedFile" />
+              </div>
+            </div>
+            <div class="line"></div>
+            <div class="form-group row">
+              <label class="col-sm-3 form-control-label">Nom:</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" formControlName="nom"
+                  [ngClass]="{ 'is-invalid': submitted && f.nom.errors }">
+                <div *ngIf="submitted && f.nom.errors" class="invalid-feedback">
+                  <div *ngIf="f.nom.errors.required">First Name is required</div>
+                </div>
+              </div>
+            </div>
+            <div class="line"></div>
+            <div class="form-group row">
+              <label class="col-sm-3 form-control-label">Prenom:</label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" formControlName="prenom"
+                  [ngClass]="{ 'is-invalid': submitted && f.prenom.errors }">
+                <div *ngIf="submitted && f.prenom.errors" class="invalid-feedback">
+                  <div *ngIf="f.prenom.errors.required">Last Name is required</div>
+                </div>
+              </div>
+            </div>
+            <div class="line"></div>
+            <div class="form-group row">
+              <label class="col-sm-3 form-control-label">Password:</label>
+              <div class="col-sm-9">
+                <input type="password" class="form-control" formControlName="password"
+                  [ngClass]="{ 'is-invalid': submitted && f.password.errors }">
+                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                  <div *ngIf="f.password.errors.required">Password is required</div>
+                </div>
+              </div>
+            </div>
+            <div class="line"></div>
+            <div class="form-group row">
+              <label class="col-sm-3 form-control-label">Email:</label>
+              <div class="col-sm-9">
+                <input type="email" class="form-control" formControlName="email"
+                  [ngClass]="{ 'is-invalid': submitted && f.email.errors }">
+                <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                  <div *ngIf="f.email.errors.required">Email is required</div>
+                  <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                </div>
+              </div>
+            </div>
+            <div class="line"></div>
+            <div class="form-group row">
+              <label class="col-sm-3 form-control-label">Adressee:</label>
+              <div class="col-sm-9">
+                <textarea class="form-control" rows="2" id="comment" formControlName="adresse"
+                  [ngClass]="{ 'is-invalid': submitted && f.adresse.errors }"></textarea>
+                <div *ngIf="submitted && f.adresse.errors" class="invalid-feedback">
+                  <div *ngIf="f.adresse.errors.required">Adresse is required</div>
+                </div>
+              </div>
+            </div>
+            <div class="line"></div>
+            <div class="form-group row">
+              <label class="col-sm-3 form-control-label">Groupe sanguine</label>
+              <div class="col-sm-9">
+                <input type="text" placeholder="Groupe sanguine" class="form-control" formControlName="groupesanguine"
+                  [ngClass]="{ 'is-invalid': submitted && f.groupesanguine.errors }">
+                <div *ngIf="submitted && f.groupesanguine.errors" class="invalid-feedback">
+                  <div *ngIf="f.groupesanguine.errors.required">Groupe sanguine is required</div>
+                </div>
+              </div>
+            </div>
+            <div cdlass="line"></div>
+            <div class="form-group row">
+              <label class="col-sm-3 form-control-label">Antecedents: </label>
+              <div class="col-sm-9">
+                <input type="text" placeholder="Antecedents" class="form-control" formControlName="antecedents"
+                  [ngClass]="{ 'is-invalid': submitted && f.antecedents.errors }">
+                <div *ngIf="submitted && f.antecedents.errors" class="invalid-feedback">
+                  <div *ngIf="f.antecedents.errors.required"> Antecedents is required</div>
+                </div>
+              </div>
+            </div>
+            <div class="line"></div>
+            <div class="form-group row">
+              <label class="col-sm-3 form-control-label">Date de naissance:</label>
+              <div class="col-sm-9">
+                <input type="date" placeholder="Datedenaissance" class="form-control" formControlName="datenaissance"
+                  [ngClass]="{ 'is-invalid': submitted && f.datenaissance.errors }">
+                <div *ngIf="submitted && f.datenaissance.errors" class="invalid-feedback">
+                  <div *ngIf="f.datenaissance.errors.required">Date de naissance is required</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="line"></div>
+            <div class="form-group row">
+              <label class="col-sm-3 form-control-label">Sexe:</label>
+              <div class="col-sm-9">
+                <select formControlName="sexe" class="form-control mb-3" style="display: block !important"
+                  [ngClass]="{ 'is-invalid': submitted && f.sexe.errors }">
+
+                  <option *ngFor="let acc of atsexe" [value]="acc">{{acc}}</option>
+
+
+                </select>
+                <div *ngIf="submitted && f.sexe.errors" class="invalid-feedback">
+                  <div *ngIf="f.sexe.errors.required">Sexe is required</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="line"></div>
+            <div class="form-group row">
+              <label class="col-sm-3 form-control-label">Telephonne:</label>
+              <div class="col-sm-9">
+                <input type="text" placeholder="Telephonne" class="form-control" formControlName="telephone"
+                  [ngClass]="{ 'is-invalid': submitted && f.telephone.errors }">
+                <div *ngIf="submitted && f.telephone.errors" class="invalid-feedback">
+                  <div *ngIf="f.telephone.errors.required">Telephonne is required</div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" (click)="Save()" class="btn btn-success" data-dismiss="alert">Save
+          </button>
+          <div class="alert alert-primary pt-3" role="alert" *ngIf="msg">
+            Un nouveau patient est ajouté avec succès.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Page Footer-->
+<footer class="main-footer">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-sm-6">
+
+      </div>
+      <div class="col-sm-6 text-right">
+        <!-- Please do not remove the backlink to us unless you support further theme's development at https://bootstrapious.com/donate. It is part of the license conditions. Thank you for understanding :)-->
+      </div>
+    </div>
+  </div>
+</footer>

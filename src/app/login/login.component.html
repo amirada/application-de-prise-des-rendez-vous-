@@ -1,0 +1,82 @@
+<div class="page login-page">
+    <div class="container d-flex align-items-center">
+      <div class="form-holder has-shadow">
+          <div class="row" >
+            
+              <div class="card-group">
+                  <div class="card">
+                    <img src="../../assets/img/patient" style="width: 100%; height: 250px" class="card-img-top" alt="Patient">
+                    <div class="card-body">
+                      
+                      <button type="button" class="btn btn-primary titre" (click)="getRole('Patients')">Patient</button>
+                      
+                    </div>
+                  </div>
+                  <div class="card">
+                    <img src="../../assets/img/medecin.jpg"  style="width:100%; height: 250px" class="card-img-top" alt="Medecin">
+                    <div class="card-body">
+                     
+                      <button type="button" class="btn btn-primary titre" (click)="getRole('Medecin')">Medecin</button>
+                    </div>
+                  </div>
+                  
+                </div>
+              
+              </div><br><br><br>
+          <div class="line"></div>
+        <div class="row" *ngIf="typeAccee">
+          <!-- Logo & Information Panel-->
+          <div class="col-lg-6">
+            <div class="info d-flex align-items-center">
+              <div class="row">
+                
+              <div class="content">
+                <div class="logo tite">
+                  <h1>GOOD HEALTH FOR ALL</h1>
+                </div>
+                <p class="tite">The one who supports his thirst spares his health.</p>
+              </div>
+            </div>
+            <div class="row">
+              <img src="../../assets/img/imageonline-co-whitebackgroundremoved (1).png">
+            </div>
+                        
+          </div>
+          </div>
+          <!-- Form Panel    -->
+          <div class="col-lg-6 bg-white">
+            <div class="form d-flex align-items-center">
+              <div class="content">
+                <form [formGroup]="loginForm" method="post" class="form-validate">
+                  <div class="form-group">
+                    <input id="login-firstname" type="text" name="loginfirstname" required data-msg="Please enter your firstname" class="input-material" formControlName="nom">
+                    <label for="login-firstname" class="label-material">First Name</label>
+                    
+                  </div>
+                  <div class="form-group">
+                  <input id="login-lastname" type="text" name="loginUsername" required data-msg="Please enter your lastname" class="input-material" formControlName="prenom">
+                    <label for="login-lastname" class="label-material">Last Name</label>
+                  </div>
+                  
+                  
+                  
+                  <div class="form-group">
+                    <input id="login-password" type="password" name="loginPassword" required data-msg="Please enter your password" class="input-material" formControlName="password">
+                    <label for="login-password" class="label-material">Password</label>
+
+                  </div><a id="login" role="button" (click)="submit()" class="btn btn-primary" >Login</a>
+                  <!-- This should be submit button but I replaced it with <a> for demo purposes-->
+                </form>
+                <br><small>Do not have an account? </small><a routerLink='/registre' class="signup">Signup</a>
+              </div>
+            </div>
+          </div>
+        </div>
+     
+     
+     
+      </div>
+    </div>
+    <div class="copyrights text-center">
+          </div>
+  </div>
